@@ -181,7 +181,7 @@ ax.boxplot(xy, showfliers=False, showmeans=True, positions=p1)
 ax.set_xticks([0.5, 1.5, 2.5, 3.75, 5.25, 6.65, 8.15])
 ax.set_xticklabels(['MCC', 'HCC', 'IS', 'CL(3)', 'CL(5)','CL(7)', 'CL(12)'])
 
-ax.set_ylabel("% Long rallies")
+ax.set_ylabel("% Aces")
 ax.set_title("Game play performance over time")
 ax.set_xlim((0,9))
 
