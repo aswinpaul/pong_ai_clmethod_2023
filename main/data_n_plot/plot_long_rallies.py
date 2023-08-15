@@ -34,6 +34,28 @@ for i in range(len(score_length_2)):
     
 x = [mean_1, mean_2]
 
+with open('data_clmethod_1_M5', 'rb') as file:
+    score_length_1 = np.load(file, allow_pickle=True)
+    
+with open('data_clmethod_2_M5', 'rb') as file:
+    score_length_2 = np.load(file, allow_pickle=True)
+    
+mean_1 = []
+for i in range(len(score_length_1)):
+    p = np.count_nonzero(score_length_1[i] > 3)
+    p /= len(score_length_1[i])
+    p *= 100
+    mean_1.append(p)
+    
+mean_2 = []
+for i in range(len(score_length_2)):
+    p = np.count_nonzero(score_length_2[i] > 3)
+    p /= len(score_length_2[i])
+    p *= 100
+    mean_2.append(p)
+    
+xx = [mean_1, mean_2]
+
 with open('data_clmethod_1_M7', 'rb') as file:
     score_length_1 = np.load(file, allow_pickle=True)
     
@@ -55,6 +77,7 @@ for i in range(len(score_length_2)):
     mean_2.append(p)
     
 y = [mean_1, mean_2]
+
 
 with open('data_clmethod_1_M12', 'rb') as file:
     score_length_1 = np.load(file, allow_pickle=True)
@@ -152,20 +175,20 @@ ax.bxp(stats1, showfliers=False, showmeans=True, positions=p)
 
 # Simulations
 # xy = [x[0], x[1], y[0], y[1], z[0], z[1], zz[0], zz[1]]
-xy = [x[0], x[1], y[0], y[1], z[0], z[1]]
-p1 = [3.5, 4.0, 4.9, 5.4, 6.4, 6.9]
+xy = [x[0], x[1], xx[0], xx[1], y[0], y[1], z[0], z[1]]
+p1 = [3.5, 4.0, 4.9, 5.4, 6.4, 6.9, 7.9, 8.4]
 
 ax.boxplot(xy, showfliers=False, showmeans=True, positions=p1)
-ax.set_xticks([0.5, 1.5, 2.5, 3.75, 5.25, 6.65])
-ax.set_xticklabels(['MCC', 'HCC', 'IS', 'CL(3)', 'CL(7)', 'CL(12)'])
+ax.set_xticks([0.5, 1.5, 2.5, 3.75, 5.25, 6.65, 8.15])
+ax.set_xticklabels(['MCC', 'HCC', 'IS', 'CL(3)', 'CL(5)','CL(7)', 'CL(12)'])
 
 ax.set_ylabel("% Long rallies")
 ax.set_title("Game play performance over time")
-#ax.set_ylim((0.2,1.8))
-ax.set_xlim((-0,7.5))
-line1 = ax.hlines(y=average_4, xmin=0, xmax=8.8, linestyles = '--', 
+ax.set_xlim((0,9))
+
+line1 = ax.hlines(y=average_4, xmin=0, xmax=9, linestyles = '--', 
                   color='black', label = 'HCC level')
-line2 = ax.hlines(y=average_6, xmin=0, xmax=8.8, linestyles = '--', 
+line2 = ax.hlines(y=average_6, xmin=0, xmax=9, linestyles = '--', 
                   color='red', label = 'Random (IS) level')
 ax.legend(handles=[line1, line2])
 

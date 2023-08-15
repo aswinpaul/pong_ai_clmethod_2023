@@ -8,4 +8,9 @@ Created on Mon Aug 14 10:18:24 2023
 
 from trial_clmethod import trial
 
-trial(12)
+# call the trail function with memory horizon 
+# data will be saved to folder: data_n_plot
+memory_horizon = 5
+
+# trial function executes function from file: trial_clmethod
+trial(memory_horizon)
