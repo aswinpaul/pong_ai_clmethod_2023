@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = 'empty-project-type'
-recent_files = ['data_n_plot/plot_avg_rally_length.py', 'data_n_plot/plot_aces.py']
+recent_files = ['pymdp/agent_cl.py', 'pong_trials/trial_clmethod.py']
 
 [main]
 version = 0.2.0
