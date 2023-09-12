@@ -49,15 +49,15 @@ class dpefe_agent(Agent):
                  planning_horizon = 1,
                  action_precision = 1,
                  planning_precision = 1):
-
-        # Normalising prior preference as a distribution over modalities
-        self.C = softmax_obj_arr(C)
         
         super().__init__(A = A, B = B, C = C, D = D,
                          pA = A, pB = B, pD = D,
                          alpha = action_precision,
                          gamma = planning_precision)
         
+        # Normalising prior preference as a distribution over modalities
+        self.C = softmax_obj_arr(C)
+
         self.N = planning_horizon
         self.EPS_VAL = 1e-16
         self.tau = 0
@@ -105,7 +105,6 @@ class dpefe_agent(Agent):
     def plan_using_dynprog(self, modalities = False):
         
         self.melting_factors_for_planning()
-        self.N = 2 if self.N == 1 else self.N
         
         self.G = np.zeros((self.N-1, self.numA, self.numS)) + self.EPS_VAL
         self.Q_actions = np.zeros((self.N-1, self.numA, self.numS)) + 1/self.numA
@@ -144,7 +143,7 @@ class dpefe_agent(Agent):
                     self.Q_actions[k,:,l] = softmax(-1*self.gamma*self.G[k,:,l])
                     
         # Action distribution (assuming current time is time step zero of planning)
-        self.q_pi = softmax(-1*self.alpha*np.matmul(self.G[0,:,:], self.qs_melted[0]))
+        self.q_pi = softmax(-1*self.alpha*np.matmul(self.G[0,:,:], self.qs_melted[0]))  
         
     def step(self, obs_list, learning = True):
         """

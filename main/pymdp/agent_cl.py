@@ -125,7 +125,7 @@ class cl_agent(Agent):
             self.take_decision()
             self.sample_action()
             
-            action = self.action[0]
+            action = int(self.action[0])
             
             if(len(self.last_n_action) > self.memory_horizon):
                 self.last_n_action.pop(0)
@@ -161,6 +161,7 @@ class cl_agent(Agent):
             self.take_decision()
             self.sample_action()
             
+            #Assuming all actions are in first hidden state (to be improved for all hidden states)
             action = int(self.action[0])
             
             if(len(self.last_n_action) > self.memory_horizon):

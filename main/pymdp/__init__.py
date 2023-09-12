@@ -1,6 +1,7 @@
 from . import agent
 from . import agent_si
 from . import agent_dpefe
+from . import agent_cl
 from . import envs
 from . import utils
 from . import maths
