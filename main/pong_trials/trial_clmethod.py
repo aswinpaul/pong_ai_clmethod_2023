@@ -12,7 +12,7 @@ from pymdp.utils import random_A_matrix, random_B_matrix, obj_array_uniform, nor
 random.seed(10)
 np.random.seed(10);
 
-memory_horizon = 4
+memory_horizon = 1
 
 # generative model of the pong-game environment
 
@@ -154,9 +154,9 @@ for mt in range(m_trials):
         t_length[trial, 0] = reward
         t_length[trial, 1] = tau_trial
         
-    sep = tau_trial/4
+    sep = int(tau_trial/4)
     sep_trial = np.argwhere(t_length[:,1] <= sep)[-1][0]      
-    
+    sep_trial = 1 if sep_trial == 0 else sep_trial
     data_1.append(t_length[0:sep_trial, 0])
     data_2.append(t_length[sep_trial:n_trials, 0])
 
