@@ -12,7 +12,7 @@ from pymdp.utils import random_A_matrix, random_B_matrix, obj_array_uniform, nor
 random.seed(10)
 np.random.seed(10);
 
-memory_horizon = 3
+memory_horizon = 4
 
 # generative model of the pong-game environment
 
@@ -30,7 +30,7 @@ memory_horizon = 3
 
 # (Hidden)Factors
 # Ball x (Hypothesis)
-s1_size = 41
+s1_size = 38
 # Ball y (Hypothesis)
 s2_size = 8
 # Pad (Hypothesis)
@@ -48,7 +48,7 @@ num_controls = [len(s1_actions), len(s2_actions), len(s3_actions)]
 
 # Observations
 # Ball x (Hypothesis)
-o1_size = 41
+o1_size = 38
 # Ball y (Hypothesis)
 o2_size = 8
 # Paddle y (Hypothesis)
@@ -97,13 +97,13 @@ data_2 = []
 for mt in range(m_trials):
     print(mt)
         
-    gamma_initial = 0.55
     cl_agent = agent(A = A,
                      B = B,
                      C = C,
                      D = D,
                      memory_horizon = memory_horizon, 
-                     gamma_initial = gamma_initial) 
+                     gamma_initial = 0.55,
+                     action_precision = 1024) 
     
     cl_agent.lr_pB = 1e+16
     

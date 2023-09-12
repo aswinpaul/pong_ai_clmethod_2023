@@ -60,6 +60,7 @@ class cl_agent(Agent):
         self.gamma_initial = gamma_initial
         self.last_n_qs = []
         self.last_n_action = []
+        self.action_selection = "stochastic"
         
     def take_decision(self):
         c_s = np.matmul(np.log(self.CL[0]), self.qs_melted[0])
